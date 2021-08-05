@@ -1,0 +1,52 @@
+<h2>Por Region</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+
+        <app-pais-input
+        (onEnter) = "Buscar( $event )"
+        (onDebounce)="sugerencias( $event )"
+        placeholder = "Region"
+        ></app-pais-input>
+    </div>
+
+</div>
+
+<hr>
+
+<div class="alert alert-danger" *ngIf="error">
+No se encontro nada con el termino {{termino}}
+</div>
+
+<div class="col">
+
+    <!-- [class.btn-primary]="item==regionActiva" -->
+    <!-- [ngClass]="{
+        'btn-primary':item ==regionActiva,
+        'btn-outline-primary':item !==regionActiva
+
+     }" -->
+    <button
+     class="btn me-2" 
+     *ngFor="let item of regiones"
+     [class]="getclassCSS(item)"
+     (click)=" Buscar(item)">
+        {{item |titlecase}}
+    </button>
+</div>
+
+
+<div *ngIf="!error" class="row">
+    <div class="col">
+      
+        <app-pais-tabla [items] = items></app-pais-tabla>
+    </div>
+</div>
+
+<h2>Por Region</h2>
+<hr>
+<h5>Seleccione la Region {{regionActiva |titlecase}}</h5>
+<div class="row">
+  
+</div>
